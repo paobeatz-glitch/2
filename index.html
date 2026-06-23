@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Invitation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', 'Segoe UI', Georgia, serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #ffd1dc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px;
+            color: #4a3737;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            max-width: 480px;
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(224, 142, 160, 0.25);
+            padding: 40px 35px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .icon {
+            font-size: 52px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: pulseHeart 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseHeart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #8b4c5c;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #6e5656;
+            margin-bottom: 25px;
+        }
+
+        .highlight-box {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: rgba(255, 240, 243, 0.8);
+            border-left: 4px solid #d4a5b1;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-style: italic;
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .survey-section-title {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #aa7c88;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .options-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .vibe-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .option-card {
+            background: #ffffff;
+            border: 2px solid #f5e1e5;
+            border-radius: 16px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-align: center;
+        }
+
+        .option-card:hover {
+            border-color: #e096a8;
+            background-color: #fffafb;
+            transform: translateY(-2px);
+        }
+
+        .option-card input[type="radio"] {
+            accent-color: #bc6c7e;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+
+        .option-label {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #5c4545;
+            cursor: pointer;
+        }
+
+        .inputs-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .custom-date-input {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #f5e1e5;
+            border-radius: 14px;
+            font-size: 14px;
+            color: #4a3737;
+            background-color: #ffffff;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .custom-date-input:focus {
+            border-color: #e096a8;
+            box-shadow: 0 0 0 4px rgba(224, 150, 168, 0.15);
+            background-color: #fffafb;
+        }
+
+        input[type="date"] {
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            margin-top: 15px;
+            background: linear-gradient(135deg, #d4889a 0%, #bc6c7e 100%);
+            color: #ffffff;
+            border: none;
+            padding: 16px 28px;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(188, 108, 126, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #c77789 0%, #a6586a 100%);
+            box-shadow: 0 8px 20px rgba(188, 108, 126, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Thank You Screen Styles */
+        .result-screen {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-badge {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: #fce4ec;
+            color: #c2185b;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .receipt-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px dashed #e8cbd2;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .receipt-row {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin-bottom: 0;
+        }
+
+        .receipt-label {
+            font-size: 13px;
+            color: #aa7c88;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .receipt-value {
+            color: #4a3737;
+            font-weight: 700;
+            margin-top: 4px;
+            font-size: 17px;
+        }
+
+        .screenshot-instruction {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-size: 13px;
+            color: #94626f;
+            background-color: rgba(245, 225, 229, 0.6);
+            padding: 12px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            width: 100%;
+            font-weight: 600;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container" id="invitationCard">
+        <div id="formView">
+            <div class="icon">✨</div>
+            <h1>An Invitation Just For You</h1>
+            <p>I would absolutely love to hang out with you! I'm genuinely thrilled to get to know you better and share some beautiful conversation.</p>
+            
+            <div class="highlight-box">
+                <strong>Gentle reminder:</strong> You just need to pick your day, dress up, and show up! No planning required on your end—I'll take care of every little detail. 🌸
+            </div>
+
+            <form class="options-form" id="dateForm">
+                
+                <div class="survey-section-title">Step 1: Choose Your Vibe</div>
+                
+                <div class="vibe-container">
+                    <label class="option-card" for="prefDinner">
+                        <span class="option-label" style="font-size: 24px; margin-bottom: 2px;">🍽️</span>
+                        <span class="option-label">Delicious Dinner</span>
+                        <input type="radio" id="prefDinner" name="dateType" value="Dinner Date" required checked>
+                    </label>
+
+                    <label class="option-card" for="prefCoffee">
+                        <span class="option-label" style="font-size: 24px; margin-bottom: 2px;">☕</span>
+                        <span class="option-label">Cozy Coffee</span>
+                        <input type="radio" id="prefCoffee" name="dateType" value="Coffee Date">
+                    </label>
+                </div>
+
+                <div class="survey-section-title" style="margin-top: 10px;">Step 2: Pick a Day & Time</div>
+
+                <div class="inputs-wrapper">
+                    <input type="date" id="customDatePicker" class="custom-date-input" required>
+                    <input type="text" id="customTimeInput" class="custom-date-input" placeholder="Preferred time (e.g., After 6 PM, or Lunch time)" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Confirm Our Date ✨</button>
+            </form>
+        </div>
+
+        <div id="resultView" class="result-screen">
+            <div class="success-badge">💖 IT'S A MATCH!</div>
+            <h1>Can't Wait to See You!</h1>
+            <p>Everything is set. Your schedule is locked into my calendar. Here is your date card:</p>
+
+            <div class="receipt-card">
+                <div class="receipt-row">
+                    <div class="receipt-label">The Vibe</div>
+                    <div class="receipt-value" id="finalType">--</div>
+                </div>
+                <div style="height: 1px; background-color: #f5e1e5; margin: 16px 0;"></div>
+                <div class="receipt-row">
+                    <div class="receipt-label">The Schedule</div>
+                    <div class="receipt-value" id="finalResponse">--</div>
+                </div>
+                <div style="height: 1px; background-color: #f5e1e5; margin: 16px 0;"></div>
+                <div class="receipt-row">
+                    <div class="receipt-label">Your Only Assignment</div>
+                    <div class="receipt-value" style="color: #bc6c7e; font-size: 15px;">Relax, look lovely, and simply enjoy the day!</div>
+                </div>
+            </div>
+
+            <div class="screenshot-instruction">
+                📸 Take a quick screenshot & send it my way!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set minimum pickable date to today's date dynamically
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('customDatePicker').setAttribute('min', today);
+
+        // Form submission logic
+        document.getElementById('dateForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            const selectedType = document.querySelector('input[name="dateType"]:checked').value;
+            const chosenDate = document.getElementById('customDatePicker').value;
+            const chosenTime = document.getElementById('customTimeInput').value.trim();
+            
+            // Format calendar date beautifully (e.g., "Friday, Jul 11")
+            let dateObject = new Date(chosenDate + "T00:00:00");
+            let formattedDate = dateObject.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+
+            // Combine date strings
+            const finalChoiceText = `${formattedDate} @ ${chosenTime}`;
+
+            // Populate the confirmation card values
+            document.getElementById('finalType').innerText = selectedType;
+            document.getElementById('finalResponse').innerText = finalChoiceText;
+
+            // Transition screens with a smooth visual toggle
+            document.getElementById('formView').style.display = 'none';
+            document.getElementById('resultView').style.display = 'block';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
